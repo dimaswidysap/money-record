@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- auth -->
+    <section>
+      <!-- sing in -->
+      <section>
+        <form id="signUp">
+          <div>
+            <label for="usernameSignUp">Masukan username anda</label>
+            <input id="usernameSignUp" type="text" />
+          </div>
+          <div>
+            <label for="passwordSignUp">Buat Password anda</label>
+            <input id="passwordSignUp" type="password" />
+          </div>
+          <div>
+            <button id="signUpBtn">Buat Akun</button>
+          </div>
+        </form>
+      </section>
+      <!-- sing in -->
+      <section>
+        <form id="signIn">
+          <div>
+            <label for="usernameSignIn">Masukan username anda</label>
+            <input id="usernameSignIn" type="text" />
+          </div>
+          <div>
+            <label for="passwordSignIn">Masukan Password anda</label>
+            <input id="passwordSignIn" type="password" />
+          </div>
+          <div>
+            <button id="signInBtn">Masuk</button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <section>
+      <form>
+        <div>
+          <input type="number" name="income" id="income" />
+        </div>
+        <div>
+          <input type="text" name="incomeDesc" id="incomeDesc" />
+        </div>
+        <div>
+          <input id="incomeBtn" type="submit" />
+        </div>
+      </form>
+    </section>
+
+    <!--  -->
+    <section>
+      <div id="totalBalance"></div>
+    </section>
+    <!--  -->
+
+    <!-- auth -->
+    <script type="module" src="auth/signIn.js"></script>
+    <script type="module" src="auth/signUp.js"></script>
+
+    <!--  -->
+    <script type="module" src="script.js"></script>
+    <script type="module" src="bluePrint/class.js"></script>
+    <script type="module" src="server.js"></script>
+    <!-- <script type="module" src="databases.js"></script> -->
+  </body>
+</html>
