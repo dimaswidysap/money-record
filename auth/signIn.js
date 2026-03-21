@@ -25,7 +25,7 @@ signInBtn.addEventListener("click", (e) => {
     return;
   }
 
-  if (user.passworOwner !== passwordValue) {
+  if (user.passwordOwner !== passwordValue) {
     alert("Password salah!");
     password.value = "";
     return;

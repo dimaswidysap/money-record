@@ -1,25 +1,38 @@
+import wallets from "../localStorage/databases.js";
+
 class Transaction {
   constructor(id, description, amount, type) {
     this.id = id;
     this.description = description;
-    this.amount = amount; // Angka positif
-    this.type = type; // 'income' atau 'expense'
+    this.amount = amount;
+    this.type = type;
     this.date = new Date().toLocaleDateString();
   }
 }
 
 class Wallet {
-  constructor(idOwner, ownerName, passworOwner) {
+  constructor(idOwner, ownerName, passwordOwner, transactions = []) {
     this.id = idOwner;
     this.owner = ownerName;
-    this.passworOwner = passworOwner;
-    this.transactions = [];
+    this.passwordOwner = passwordOwner;
+    this.transactions = transactions;
   }
 
   addTransaction(description, amount, type) {
     const id = Date.now();
     const newTransaction = new Transaction(id, description, amount, type);
     this.transactions.push(newTransaction);
+
+    this.saveToLocalStorageCurrenUser();
+    this.saveToLocalStorageWallets(); // 🔥 tambahkan ini
+    this.updateUI();
+  }
+
+  deleteTransaction(id) {
+    this.transactions = this.transactions.filter((t) => t.id !== id);
+
+    this.saveToLocalStorageCurrenUser();
+    this.saveToLocalStorageWallets(); // 🔥 tambahkan ini
     this.updateUI();
   }
 
@@ -29,16 +42,36 @@ class Wallet {
     }, 0);
   }
 
-  deleteTransaction(id) {
-    this.transactions = this.transactions.filter((t) => t.id !== id);
-    this.updateUI();
+  updateUI() {
+    const totalBalanceContent = document.getElementById("totalBalance");
+
+    if (this.transactions.length === 0) {
+      totalBalanceContent.textContent = "Catatan anda masih kosong";
+    } else {
+      totalBalanceContent.textContent =
+        "Rp " + this.totalBalance.toLocaleString();
+    }
   }
 
-  updateUI() {
-    console.log(`Saldo terbaru ${this.owner}: Rp${this.totalBalance}`);
+  saveToLocalStorageCurrenUser() {
+    localStorage.setItem("currentUser", JSON.stringify(this));
+  }
+  saveToLocalStorageWallets() {
+    // cek apakah wallet sudah ada (berdasarkan id)
+    const index = wallets.findIndex((w) => w.id === this.id);
 
-    const totalBalanceContent = document.getElementById("totalBalance");
-    totalBalanceContent.textContent = this.totalBalance.toLocaleString();
+    console.log(index);
+
+    if (index !== -1) {
+      // update data jika sudah ada
+      wallets[index] = this;
+    } else {
+      // tambah data baru jika belum ada
+      wallets.push(this);
+    }
+
+    // simpan kembali ke localStorage
+    localStorage.setItem("wallets", JSON.stringify(wallets));
   }
 }
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
   </head>
   <body>
     <!--  -->
@@ -12,10 +13,40 @@
       <header>
         <h1>Welcome <span id="nameOwner"></span></h1>
       </header>
-      <div id="totalBalance"></div>
+      <section class="container-money-display">
+        <h4>
+          <span>Total Catatan uang anda :</span>
+          <span id="totalBalance"></span>
+        </h4>
+      </section>
+
+      <section>
+        <form id="formMoneyRecord">
+          <div>
+            <label for="inputNominal">Masukan nominal</label>
+            <input id="inputNominal" type="text" />
+          </div>
+          <div>
+            <label for="categoryMoney">Masukan Kategori</label>
+            <select name="categoryMoney" id="categoryMoney">
+              <option value="" disabled selected>Pick!</option>
+              <option value="income">Income</option>
+              <option value="expenditure">expenditure</option>
+            </select>
+          </div>
+          <div>
+            <label for="descMoney">Masukan keterangan</label>
+            <input id="descMoney" type="text" />
+          </div>
+          <div>
+            <button id="submitMoneyRecord">Submit</button>
+          </div>
+        </form>
+      </section>
     </main>
     <!--  -->
 
     <script type="module" src="server/server.js"></script>
+    <script type="module" src="localStorage/databases.js"></script>
   </body>
 </html>
