@@ -43,6 +43,7 @@ class Wallet {
   }
 
   updateUI() {
+    //
     const totalBalanceContent = document.getElementById("totalBalance");
 
     if (this.transactions.length === 0) {
@@ -51,6 +52,25 @@ class Wallet {
       totalBalanceContent.textContent =
         "Rp " + this.totalBalance.toLocaleString();
     }
+
+    //
+    const containerList = document.getElementById("list-desc-money");
+
+    const allTransactions = this.transactions;
+
+    console.log(allTransactions);
+
+    allTransactions.forEach((items) => {
+      const list = document.createElement("li");
+      const span1 = document.createElement("span");
+      const span2 = document.createElement("span");
+
+      containerList.appendChild(list);
+      list.append(span1, span2);
+
+      span1.textContent = items.description;
+      span2.textContent = items.amount.toLocaleString();
+    });
   }
 
   saveToLocalStorageCurrenUser() {
