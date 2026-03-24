@@ -1,0 +1,104 @@
+.container-form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--secondary);
+  max-width: 50rem;
+  margin: auto;
+  padding: 0.5rem;
+  border-radius: 20px;
+  border: 2px solid rgba(97, 97, 97, 0.406);
+}
+
+.formMoneyRecord {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  /* background-color: aqua; */
+}
+
+.formMoneyRecord div {
+  display: flex;
+  flex-direction: column;
+  /* background-color: aqua; */
+}
+
+label {
+  font-weight: 700;
+  color: var(--black);
+  color: var(--white);
+}
+
+.formMoneyRecord div input {
+  height: 2rem;
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  padding: 1.3rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 2px solid rgba(255, 255, 255, 0.183);
+}
+.formMoneyRecord div select {
+  height: 2rem;
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  font-weight: 600;
+  padding: 1.3rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.formMoneyRecord div button {
+  height: 2rem;
+  padding: 0 0.5rem;
+  /* background-color: black; */
+}
+
+.container-input-radio {
+  width: 100%;
+  display: flex;
+  /* flex-direction: row; */
+  /* background-color: red; */
+}
+.container-input-radio div {
+  width: 100%;
+  display: flex;
+}
+
+.akhiw {
+  display: flex;
+  /* background-color: aqua; */
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.4rem;
+  /* color: var(--white); */
+}
+
+.input-radio {
+  /* background-color: aqua !important; */
+  width: 20px;
+  background-color: transparent;
+  box-shadow: none !important;
+  /* color: var(--white); */
+}
+
+#close-form {
+  border: 2px solid rgba(255, 255, 255, 0.183);
+}
+
+#submitMoneyRecord {
+  display: flex;
+  background-color: var(--secondary);
+  border-radius: 10rem;
+  box-shadow: rgba(0, 0, 0, 0.612) 0px 3px 8px;
+  color: var(--white);
+  padding: 0.5rem 0;
+  font-weight: 800;
+  height: max-content;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.183);
+}

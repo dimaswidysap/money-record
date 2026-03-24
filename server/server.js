@@ -24,14 +24,16 @@ currentUser.updateUI();
 const form = document.getElementById("formMoneyRecord");
 const btnSubmit = document.getElementById("submitMoneyRecord");
 const moneyInput = document.getElementById("inputNominal");
-const categoryInput = document.getElementById("categoryMoney");
+
 const descMoney = document.getElementById("descMoney");
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
 
+  const pilihan = document.querySelector('input[name="type-money"]:checked');
+
   const nominal = parseInt(moneyInput.value);
-  const category = categoryInput.value;
+  const category = pilihan.value;
   const description = descMoney.value;
 
   if (!nominal || !category || !description) {

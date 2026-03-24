@@ -6,52 +6,132 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/form-input.css" />
+    <link rel="stylesheet" href="css/colors.css" />
   </head>
   <body>
     <!--  -->
     <main>
-      <header>
-        <h1>Welcome <span id="nameOwner"></span></h1>
+      <header class="header-user">
+        <div><img src="asset/icon/account.svg" alt="icon" /></div>
+        <h1>Hello <span id="nameOwner"></span></h1>
       </header>
-      <section class="container-money-display">
-        <h4>
-          <span>Total Catatan uang anda :</span>
-          <span id="totalBalance"></span>
-        </h4>
+      <section class="container-display-money">
+        <div class="current-money">
+          <h4>
+            <span>Current Money</span>
+            <span id="totalBalance"></span>
+          </h4>
+        </div>
+
+        <div class="con-in-out-money">
+          <div>
+            <span class="icon green"
+              ><img src="asset/icon/arrow-up.svg" alt="arrow-up"
+            /></span>
+            <span id="allIncomeMoney"></span>
+          </div>
+          <div>
+            <span class="icon orange"
+              ><img src="asset/icon/arrow-down.svg" alt="arrow-down"
+            /></span>
+            <span id="allExpenditureMoney"></span>
+          </div>
+        </div>
+        <section><span class="blok"></span></section>
       </section>
 
-      <section>
-        <form id="formMoneyRecord">
-          <div>
-            <label for="inputNominal">Masukan nominal</label>
-            <input id="inputNominal" type="text" />
-          </div>
-          <div>
-            <label for="categoryMoney">Masukan Kategori</label>
-            <select name="categoryMoney" id="categoryMoney">
-              <option value="" disabled selected>Pick!</option>
-              <option value="income">Income</option>
-              <option value="expenditure">expenditure</option>
-            </select>
-          </div>
-          <div>
-            <label for="descMoney">Masukan keterangan</label>
-            <input id="descMoney" type="text" />
-          </div>
-          <div>
-            <button id="submitMoneyRecord">Submit</button>
-          </div>
-        </form>
+      <section class="container-action">
+        <!-- background -->
+        <span class="jaieja">
+          <span></span>
+          <span></span>
+        </span>
+
+        <!-- konten -->
+        <div class="container-konten">
+          <span class="border-top"></span>
+
+          <section class="btn-add-record">
+            <button id="show-form">
+              <span class="icon green"
+                ><img src="asset/icon/add.svg" alt="icon-plus" /></span
+              ><span>Add Record</span>
+            </button>
+          </section>
+
+          <section class="container-form-input" style="display: none">
+            <section class="btn-close-record">
+              <button id="close-form">
+                <span class="icon orange"
+                  ><img src="asset/icon/close.svg" alt="icon-plus" /></span
+                ><span>Close</span>
+              </button>
+            </section>
+            <form id="formMoneyRecord" class="formMoneyRecord">
+              <div>
+                <label for="inputNominal">Masukan nominal</label>
+                <input id="inputNominal" type="text" />
+              </div>
+              <div>
+                <div class="container-input-radio">
+                  <div class="akhiw">
+                    <input
+                      class="input-radio"
+                      type="radio"
+                      id="income"
+                      name="type-money"
+                      value="income"
+                      checked
+                    />
+                    <label for="income">Income</label>
+                  </div>
+
+                  <div class="akhiw">
+                    <input
+                      class="input-radio"
+                      type="radio"
+                      id="expenditure"
+                      name="type-money"
+                      value="expenditure"
+                    />
+                    <label for="expenditure">expenditure</label>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label for="descMoney">Masukan keterangan</label>
+                <input id="descMoney" type="text" />
+              </div>
+              <div>
+                <button id="submitMoneyRecord">
+                  <span>Submit</span>
+                  <span class="icon">
+                    <img src="asset/icon/arrow-right.svg" alt="arrow-right" />
+                  </span>
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="container-lists">
+            <h2>Pemasukan</h2>
+            <ul id="list-desc-money" class="containerList"></ul>
+            <h2>Pengeluaran</h2>
+            <ul
+              id="list-desc-money-expenditure"
+              class="containerListExpenditure"
+            ></ul>
+          </section>
+        </div>
       </section>
 
-      <section>
-        <ul id="list-desc-money" class="list-desc-money">
-          <li><span>Keterangan</span><span>nominal</span></li>
-        </ul>
-      </section>
+      <!-- container form edit -->
+      <section class="containerFormEdit"></section>
     </main>
     <!--  -->
 
+    <script type="module" src="javascript/dashboard.js"></script>
     <script type="module" src="server/server.js"></script>
     <script type="module" src="localStorage/databases.js"></script>
   </body>
