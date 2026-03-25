@@ -1,3 +1,7 @@
+body {
+  background-color: var(--white);
+}
+
 .header-user {
   position: absolute;
   padding: 0.5rem;
@@ -148,6 +152,8 @@
   margin: auto;
   background-color: var(--white);
   /* border-radius: 20px; */
+  /* background-color: aqua; */
+  box-shadow: none;
 }
 
 .btn-add-record,
@@ -190,6 +196,7 @@
   inset: 0;
   transform: translateY(-50%);
   border-radius: 15px;
+  /* background-color: red; */
 }
 
 .container-form-input {

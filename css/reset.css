@@ -35,10 +35,6 @@ select:focus {
   outline: none;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: transparent; /* Sesuaikan warna teks */
-  -webkit-box-shadow: none; /* Sesuaikan kode hex dengan warna background inputmu */
-  /* transition: background-color 5000s ease-in-out 0s; */
+ul li {
+  list-style: none;
 }
