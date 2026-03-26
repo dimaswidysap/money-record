@@ -1,5 +1,5 @@
 import { wallets } from "../localStorage/databases.js";
-import editForm from "../server/edit.js";
+import edit from "../server/action/edit.js";
 
 class Transaction {
   constructor(id, description, amount, type) {
@@ -218,7 +218,13 @@ class Wallet {
           });
         } else {
           buttonDelete.addEventListener("click", () => {
-            editForm(idList);
+            const containerFormEdit =
+              document.querySelector(".containerFormEdit");
+
+            containerFormEdit.style.display = "flex";
+            // console.log(idList);
+
+            edit(wallets, this.id, idList);
           });
         }
       });

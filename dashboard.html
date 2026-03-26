@@ -135,18 +135,18 @@
 
       <!-- container form edit -->
       <section style="display: none" class="containerFormEdit">
+        <div>
+          <button class="editClose">
+            <div class="orange">
+              <img src="asset/icon/close.svg" alt="close-icon" />
+            </div>
+            <span>Close</span>
+          </button>
+        </div>
         <form name="formEdit">
           <div>
-            <button class="editClose">
-              <div class="orange">
-                <img src="asset/icon/close.svg" alt="close-icon" />
-              </div>
-              <span>Close</span>
-            </button>
-          </div>
-          <div>
-            <label for="">Masukan nominal</label>
-            <input class="newNominal" type="number" min="0" />
+            <label for="newNominal">Masukan nominal</label>
+            <input id="newNominal" class="newNominal" type="number" min="0" />
           </div>
           <div class="container-input-radio">
             <div class="akhiw">
@@ -173,8 +173,8 @@
             </div>
           </div>
           <div>
-            <label for="">Masukan Keterangan</label>
-            <input class="newDesc" type="text" />
+            <label for="newDesc">Masukan Keterangan</label>
+            <input id="newDesc" class="newDesc" type="text" />
           </div>
           <div>
             <button class="btnEdit">

@@ -18,4 +18,5 @@ let user = new Wallet(
 );
 
 addTransactionForm(resetForm, user);
+
 user.updateUI();
