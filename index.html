@@ -6,47 +6,62 @@
     <title>Home - Money Record</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <!-- auth -->
-    <section>
-      <!-- sing in -->
-      <section>
-        <form id="signUp">
+    <main>
+      <!-- auth -->
+      <section class="container-auth">
+        <!-- conatiner gambar -->
+        <section class="container-gambar">
           <div>
-            <label for="usernameSignUp">Masukan username anda</label>
-            <input id="usernameSignUp" type="text" />
+            <img src="asset/img/loginpage.png" alt="" />
           </div>
-          <div>
-            <label for="passwordSignUp">Buat Password anda</label>
-            <input id="passwordSignUp" type="password" />
-          </div>
-          <div>
-            <button id="signUpBtn">Buat Akun</button>
-          </div>
-        </form>
+        </section>
+        <div class="container-form">
+          <!-- sing in -->
+          <section class="form">
+            <h2>Sing In</h2>
+            <form id="signIn">
+              <div class="nhikjsgu">
+                <label for="usernameSignIn">Masukan username anda</label>
+                <input id="usernameSignIn" type="text" />
+              </div>
+              <div class="nhikjsgu">
+                <label for="passwordSignIn">Masukan Password anda</label>
+                <input id="passwordSignIn" type="password" />
+              </div>
+              <div class="container-btn">
+                <button id="signInBtn">Masuk</button>
+              </div>
+              <div class="sjajisk">
+                <button>Create Account</button>
+              </div>
+            </form>
+          </section>
+          <!-- sing in -->
+          <section style="display: none">
+            <form id="signUp">
+              <div>
+                <label for="usernameSignUp">Masukan username anda</label>
+                <input id="usernameSignUp" type="text" />
+              </div>
+              <div>
+                <label for="passwordSignUp">Buat Password anda</label>
+                <input id="passwordSignUp" type="password" />
+              </div>
+              <div>
+                <button id="signUpBtn">Buat Akun</button>
+              </div>
+            </form>
+          </section>
+        </div>
       </section>
-      <!-- sing in -->
-      <section>
-        <form id="signIn">
-          <div>
-            <label for="usernameSignIn">Masukan username anda</label>
-            <input id="usernameSignIn" type="text" />
-          </div>
-          <div>
-            <label for="passwordSignIn">Masukan Password anda</label>
-            <input id="passwordSignIn" type="password" />
-          </div>
-          <div>
-            <button id="signInBtn">Masuk</button>
-          </div>
-        </form>
-      </section>
-    </section>
-
-    <!-- auth -->
+    </main>
     <script type="module" src="auth/signIn.js"></script>
     <script type="module" src="auth/signUp.js"></script>
     <script type="module" src="server/createUser.js"></script>
+    <script type="module" src="javascript/index.js"></script>
   </body>
 </html>

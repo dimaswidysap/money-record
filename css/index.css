@@ -1,0 +1,92 @@
+main {
+  height: 100svh;
+  width: 100%;
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.container-auth {
+  width: 90%;
+  /* background-color: red; */
+  height: max-content;
+  margin: 3rem 0 0 0;
+}
+
+.container-gambar {
+  width: 100%;
+  aspect-ratio: 1/1;
+  /* background-color: var(--primary); */
+  border-radius: 5px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.container-gambar div {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.container-gambar div img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.container-form {
+  /* background-color: red; */
+  margin-top: 0.5rem;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
+.form {
+  /* background-color: aqua; */
+  position: relative;
+  padding: 2rem 0 0 0;
+}
+
+.form h2 {
+  position: absolute;
+  bottom: 100%;
+  color: var(--white);
+}
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nhikjsgu {
+  position: relative;
+  /* background-color: aqua; */
+}
+
+.nhikjsgu label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(2%);
+  font-weight: 600;
+  opacity: 0.6;
+  font-size: 0.9em;
+}
+.nhikjsgu input {
+  background-color: var(--white);
+  padding: 0.5rem 0.2rem;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.container-btn button {
+  width: 100%;
+  background-color: var(--primary);
+  padding: 0.5rem 0;
+  font-weight: 800;
+  color: var(--white);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.sjajisk button {
+  color: blue;
+}
