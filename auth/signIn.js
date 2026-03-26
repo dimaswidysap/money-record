@@ -1,44 +1,43 @@
-import wallets from "../localStorage/databases.js";
-import { resetForm } from "../module/module.mjs";
+const signIn = (dataBases, resetForm) => {
+  const form = document.getElementById("signIn");
+  const signInBtn = document.getElementById("signInBtn");
+  const username = document.getElementById("usernameSignIn");
+  const password = document.getElementById("passwordSignIn");
 
-const form = document.getElementById("signIn");
-const signInBtn = document.getElementById("signInBtn");
-const username = document.getElementById("usernameSignIn");
-const password = document.getElementById("passwordSignIn");
+  signInBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-signInBtn.addEventListener("click", (e) => {
-  e.preventDefault();
+    const usernameValue = username.value.trim();
+    const passwordValue = password.value.trim();
 
-  const usernameValue = username.value.trim();
-  const passwordValue = password.value.trim();
+    if (!usernameValue || !passwordValue) {
+      alert("Username dan Password wajib diisi!");
+      return;
+    }
 
-  if (!usernameValue || !passwordValue) {
-    alert("Username dan Password wajib diisi!");
-    return;
-  }
+    const user = dataBases.find(
+      (user) =>
+        user.owner === usernameValue && user.passwordOwner === passwordValue,
+    );
 
-  const user = wallets.find((user) => user.owner === usernameValue);
+    if (!user) {
+      alert("Username tidak ditemukan!");
+      return;
+    }
 
-  if (!user) {
-    alert("Username tidak ditemukan!");
+    alert("Login berhasil!");
     resetForm(form);
-    return;
-  }
 
-  if (user.passwordOwner !== passwordValue) {
-    alert("Password salah!");
-    password.value = "";
-    return;
-  }
+    const currentUser = {
+      idUser: user.id,
+      name: user.owner,
+      pass: user.passwordOwner,
+    };
 
-  alert("Login berhasil!");
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-  localStorage.setItem("currentUser", JSON.stringify(user));
+    window.location = "dashboard.html";
+  });
+};
 
-  // console.log("User login:", user);
-
-  resetForm(form);
-
-  // redirect (opsional)
-  window.location.href = "dashboard.html";
-});
+export default signIn;
