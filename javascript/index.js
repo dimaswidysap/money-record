@@ -1,35 +1,42 @@
-// 1. Buat fungsi yang lebih fleksibel (Reusable)
-function handleLabelVisibility(input, label) {
-  const updateStatus = () => {
-    // Jika input sedang focus ATAU input tidak kosong
-    if (document.activeElement === input || input.value.length > 0) {
-      label.classList.add("displayNone");
-    } else {
-      label.classList.remove("displayNone");
-    }
-  };
+document.addEventListener("DOMContentLoaded", () => {
+  const signInSection = document.querySelector(".form");
+  const signUpSection = document.querySelector(
+    'section[style*="display: none"]',
+  );
+  const createAccountBtn = document.querySelector(".sjajisk button");
 
-  // Pasang listener ke input tersebut
-  input.addEventListener("focus", updateStatus);
-  input.addEventListener("blur", updateStatus);
-  input.addEventListener("input", updateStatus);
+  // Berikan class agar mudah diatur CSS
+  signUpSection.classList.add("signUp-section");
 
-  // Jalankan sekali saat halaman dimuat (untuk menangani autofill)
-  updateStatus();
-}
+  // Bungkus input signUp dengan div untuk styling yang sama
+  const signUpInputs = signUpSection.querySelectorAll("div");
+  signUpInputs.forEach((div) => div.classList.add("signUp-field"));
 
-// 2. Ambil elemen
-const usernameInput = document.getElementById("usernameSignIn");
-const usernameLabel = document.querySelector(".usernameSingInLabel");
+  // Tambahkan Tombol Kembali di form Sign Up
+  const backBtnContainer = document.createElement("div");
+  backBtnContainer.classList.add("back-to-login");
+  backBtnContainer.innerHTML =
+    '<button type="button" id="backBtn">Login</button>';
+  signUpSection.appendChild(backBtnContainer);
 
-const passInput = document.getElementById("passwordSignIn");
-const passLabel = document.querySelector(".passwordSignInLabel");
+  const backBtn = document.getElementById("backBtn");
 
-// 3. Panggil fungsinya untuk masing-masing pasangan
-if (usernameInput && usernameLabel) {
-  handleLabelVisibility(usernameInput, usernameLabel);
-}
+  createAccountBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    signInSection.style.display = "none";
+    signUpSection.style.display = "block";
+  });
 
-if (passInput && passLabel) {
-  handleLabelVisibility(passInput, passLabel);
-}
+  backBtn.addEventListener("click", () => {
+    signUpSection.style.display = "none";
+    signInSection.style.display = "block";
+  });
+
+  document.getElementById("signIn").addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
+  document.getElementById("signUp").addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+});
