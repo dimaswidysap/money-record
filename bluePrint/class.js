@@ -1,5 +1,4 @@
 import { wallets } from "../localStorage/databases.js";
-import edit from "../server/action/edit.js";
 
 class Transaction {
   constructor(id, description, amount, type) {
@@ -36,11 +35,9 @@ class Wallet {
   }
 
   updateUI() {
-    // tampilan nama user
     const userOwnerContent = document.getElementById("nameOwner");
     userOwnerContent.textContent = this.kapitalSetiapKata(this.owner);
 
-    //
     const totalBalanceContent = document.getElementById("totalBalance");
 
     if (this.transactions.length === 0) {
@@ -49,25 +46,17 @@ class Wallet {
       totalBalanceContent.textContent =
         "Rp " + this.totalBalance.toLocaleString();
     }
-    //
-    const conAllIncomeMoney = document.getElementById("allIncomeMoney");
 
+    const conAllIncomeMoney = document.getElementById("allIncomeMoney");
     conAllIncomeMoney.textContent =
       "Rp " + this.totalBalanceIncome.toLocaleString();
-    // console.log(this.totalBalanceIncome);
-
-    //
 
     const conAllExpenditureMoney = document.getElementById(
       "allExpenditureMoney",
     );
-
     conAllExpenditureMoney.textContent =
       "Rp " + this.totalBalanceExpenditure.toLocaleString();
 
-    //
-
-    // list pemasukan & pengeluaran
     const incomeLabel = document.querySelector(".labelIncome");
     const expendLabel = document.querySelector(".expendLabel");
 
@@ -87,6 +76,7 @@ class Wallet {
     } else {
       incomeLabel.style.display = "flex";
     }
+
     if (allTransactionsExpenditure.length === 0) {
       expendLabel.style.display = "none";
     } else {
@@ -99,10 +89,10 @@ class Wallet {
 
   kapitalSetiapKata(kalimat) {
     return kalimat
-      .toLowerCase() // Ubah semua jadi kecil dulu agar rapi
-      .split(" ") // Bagi kalimat menjadi array kata
-      .map((kata) => kata.charAt(0).toUpperCase() + kata.slice(1)) // Kapital huruf pertama
-      .join(" "); // Gabungkan kembali jadi kalimat
+      .toLowerCase()
+      .split(" ")
+      .map((kata) => kata.charAt(0).toUpperCase() + kata.slice(1))
+      .join(" ");
   }
 
   get totalBalance() {
@@ -110,50 +100,111 @@ class Wallet {
       return item.type === "income" ? acc + item.amount : acc - item.amount;
     }, 0);
   }
+
   get totalBalanceIncome() {
-    const income = this.transactions.filter(
-      (income) => income.type === "income",
-    );
-
-    return income.reduce((curr, acc) => acc.amount + curr, 0);
+    const income = this.transactions.filter((t) => t.type === "income");
+    return income.reduce((acc, curr) => acc + curr.amount, 0);
   }
-  get totalBalanceExpenditure() {
-    const income = this.transactions.filter(
-      (income) => income.type !== "income",
-    );
 
-    return income.reduce((curr, acc) => acc.amount + curr, 0);
+  get totalBalanceExpenditure() {
+    const expenditure = this.transactions.filter((t) => t.type !== "income");
+    return expenditure.reduce((acc, curr) => acc + curr.amount, 0);
   }
 
   filterType(list, type) {
-    return list.filter((income) => income.type === type);
+    return list.filter((item) => item.type === type);
   }
 
   saveToLocalStorageWallets() {
-    // cek apakah wallet sudah ada (berdasarkan id)
     const index = wallets.findIndex((w) => w.id === this.id);
 
     if (index !== -1) {
-      // update data jika sudah ada
       wallets[index] = this;
     } else {
-      // tambah data baru jika belum ada
       wallets.push(this);
     }
 
-    // simpan kembali ke localStorage
     localStorage.setItem("wallets", JSON.stringify(wallets));
+  }
+
+  edit(dataBases, idUser, idList) {
+    const containerFormEdit = document.querySelector(".containerFormEdit");
+    const btnClose = document.querySelector(".editClose");
+
+    const inputValue = document.getElementById("newNominal");
+    const opsiIncome = document.getElementById("incomeEdit");
+    const opsiExpend = document.getElementById("expenditureEdit");
+    const inputDesc = document.getElementById("newDesc");
+    const btnSave = document.querySelector(".btnEdit");
+
+    btnClose.onclick = (e) => {
+      containerFormEdit.style.display = "none";
+    };
+
+    const user = dataBases.find((key) => key.id === idUser);
+    const transaksiEdit = user.transactions.find((t) => t.id === idList);
+    const type = transaksiEdit.type;
+
+    inputValue.value = transaksiEdit.amount;
+    if (type === "income") {
+      opsiIncome.checked = true;
+    } else {
+      opsiExpend.checked = true;
+    }
+    inputDesc.value = transaksiEdit.description;
+
+    btnSave.onclick = (e) => {
+      e.preventDefault();
+      const validasi = confirm("Apakah anda yakin?");
+
+      if (validasi) {
+        const pilihan = document.querySelector(
+          'input[name="edit-type"]:checked',
+        );
+        const newNominal = inputValue.value;
+        const newDesc = inputDesc.value;
+        const pilihanNew = pilihan.value;
+
+        const transaksiNew = {
+          id: idList,
+          description: newDesc,
+          amount: parseInt(newNominal),
+          date: transaksiEdit.date,
+          type: pilihanNew,
+        };
+
+        const newArray = user.transactions.filter((key) => key.id !== idList);
+        newArray.push(transaksiNew);
+
+        const { transactions, ...rest } = user;
+        const userTransactionsEdit = {
+          ...rest,
+          transactions: newArray,
+        };
+
+        const indexUser = dataBases.findIndex((u) => u.id === idUser);
+        dataBases[indexUser] = userTransactionsEdit;
+
+        this.transactions = newArray;
+
+        localStorage.setItem("wallets", JSON.stringify(dataBases));
+
+        this.updateUI();
+
+        containerFormEdit.style.display = "none";
+      }
+    };
   }
 
   displayList(containerList, lists) {
     containerList.innerHTML = "";
 
-    lists.forEach((items) => {
-      let idList = items.id;
-
-      // console.log(lists);
+    lists.forEach((item) => {
+      const idList = item.id;
 
       const list = document.createElement("li");
+      list.classList.add("containerLists");
+
       const span1 = document.createElement("span");
       const span2 = document.createElement("span");
       const div = document.createElement("div");
@@ -164,33 +215,29 @@ class Wallet {
         gap: "0.5rem",
       });
 
-      const button = ["Delete", "Edit"];
+      const buttons = ["Delete", "Edit"];
 
-      button.forEach((items, index) => {
-        const buttonDelete = document.createElement("button");
-        const conIconDelet = document.createElement("div");
-        const iconDelete = document.createElement("img");
+      buttons.forEach((btnText, index) => {
+        const buttonAction = document.createElement("button");
+        const conIconAction = document.createElement("div");
+        const iconAction = document.createElement("img");
 
-        list.classList.add("containerLists");
-
-        buttonDelete.textContent = items;
-        iconDelete.setAttribute(
+        buttonAction.textContent = btnText;
+        iconAction.setAttribute(
           "src",
           index === 0 ? "asset/icon/delete.svg" : "asset/icon/edit.svg",
         );
 
-        containerList.appendChild(list);
-        list.append(span1, span2, div);
-        div.append(buttonDelete);
-        buttonDelete.appendChild(conIconDelet);
-        conIconDelet.appendChild(iconDelete);
+        div.append(buttonAction);
+        buttonAction.appendChild(conIconAction);
+        conIconAction.appendChild(iconAction);
 
-        Object.assign(iconDelete.style, {
+        Object.assign(iconAction.style, {
           width: "100%",
           objectFit: "cover",
         });
 
-        Object.assign(buttonDelete.style, {
+        Object.assign(buttonAction.style, {
           display: "flex",
           alignItems: "center",
           gap: "0.5rem",
@@ -201,10 +248,10 @@ class Wallet {
           borderRadius: "10px",
           fontWeight: "800",
           color: "var(--white)",
-          boxShadow: " rgba(0, 0, 0, 0.24) 0px 3px 8px",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         });
 
-        Object.assign(conIconDelet.style, {
+        Object.assign(conIconAction.style, {
           height: "1.3rem",
           padding: "0.2rem",
           aspectRatio: "1/1",
@@ -213,26 +260,24 @@ class Wallet {
         });
 
         if (index === 0) {
-          buttonDelete.addEventListener("click", () => {
+          buttonAction.addEventListener("click", () => {
             this.deleteTransaction(idList);
           });
         } else {
-          buttonDelete.addEventListener("click", () => {
+          buttonAction.addEventListener("click", () => {
             const containerFormEdit =
               document.querySelector(".containerFormEdit");
-
             containerFormEdit.style.display = "flex";
-            // console.log(idList);
-
-            edit(wallets, this.id, idList);
+            this.edit(wallets, this.id, idList);
           });
         }
       });
 
-      span1.textContent = this.kapitalSetiapKata(items.description) + " ";
-      span2.textContent = `Rp ${items.amount.toLocaleString()}`;
+      span1.textContent = this.kapitalSetiapKata(item.description) + " ";
+      span2.textContent = `Rp ${item.amount.toLocaleString()}`;
 
-      // console.log(list);
+      list.append(span1, span2, div);
+      containerList.appendChild(list);
     });
   }
 }
