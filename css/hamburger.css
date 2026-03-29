@@ -1,0 +1,58 @@
+.hamburger-gone {
+  transform: translateX(-100%) scale(0.5) !important;
+}
+.close-arrive {
+  transform: translateX(0) scale(1) !important;
+}
+
+.hamburger-logo {
+  transform: scale(1);
+}
+
+.hamburger-logo,
+.close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  gap: 0.3rem;
+  padding: 0 0.5rem;
+  /* transform: translateX(100%); */
+}
+
+.hamburger-logo span,
+.close span {
+  height: 4px;
+  background-color: var(--white);
+  border-radius: 10px;
+}
+
+.hamburger-logo span:nth-child(1) {
+  width: 30%;
+}
+.hamburger-logo span:nth-child(2) {
+  width: 100%;
+}
+.hamburger-logo span:nth-child(3) {
+  width: 70%;
+}
+
+.close {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%) scale(0.5);
+}
+
+.close span {
+  position: absolute;
+}
+
+.close span:nth-child(1) {
+  width: 55%;
+  rotate: 45deg;
+}
+.close span:nth-child(2) {
+  width: 60%;
+  rotate: -45deg;
+}

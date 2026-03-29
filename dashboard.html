@@ -10,14 +10,43 @@
     <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/data-money.css" />
     <link rel="stylesheet" href="css/form-edit.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
+    <link rel="stylesheet" href="css/hamburger.css" />
     <link rel="icon" href="data:," />
   </head>
   <body>
     <!--  -->
+
+    <section class="sidebar">
+      <div class="container-btn-logout">
+        <button class="btn-logout">
+          <span><img src="asset/icon/logout.svg" alt="logout" /></span>
+          <span>Logout</span>
+        </button>
+      </div>
+    </section>
+
+    <!--  -->
+
     <main>
       <header class="header-user">
-        <div><img src="asset/icon/account.svg" alt="icon" /></div>
-        <h1>Hello <span id="nameOwner"></span></h1>
+        <div>
+          <div><img src="asset/icon/account.svg" alt="icon" /></div>
+          <h1>Hello <span id="nameOwner"></span></h1>
+        </div>
+        <nav>
+          <button class="btn-hamburger">
+            <div class="hamburger-logo">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="close">
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </nav>
       </header>
       <section class="container-display-money">
         <div class="current-money">
@@ -186,10 +215,11 @@
       </section>
     </main>
     <!--  -->
+    <script type="module" src="javascript/logout.js"></script>
     <script type="module" src="server/edit.js"></script>
     <script type="module" src="javascript/dashboard.js"></script>
     <script type="module" src="server/server.js"></script>
-
+    <script type="module" src="javascript/hamburger.js"></script>
     <script type="moduel" src="bluePrint/class.js"></script>
   </body>
 </html>

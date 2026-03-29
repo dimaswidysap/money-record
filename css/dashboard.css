@@ -4,20 +4,48 @@ body {
 
 .header-user {
   position: absolute;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
   z-index: 3;
   color: var(--white);
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  /* background-color: red; */
 }
 
 .header-user div {
+  display: flex;
+}
+
+.header-user div div {
   /* background-color: aqua; */
   aspect-ratio: 1.1;
   width: 40px;
 }
 .header-user div img {
   width: 100%;
+}
+
+nav button {
+  position: relative;
+  display: flex;
+  background-color: var(--primary);
+  height: 3rem;
+  aspect-ratio: 1/1;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+nav button div {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  /* background-color: aqua; */
+  transition: all 0.3s ease-in-out;
 }
 
 .container-display-money {
